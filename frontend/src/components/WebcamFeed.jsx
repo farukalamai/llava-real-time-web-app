@@ -19,7 +19,7 @@ const WebcamFeed = () => {
   }, []);
 
   return (
-    <div className="w-1/2 h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center">
       <video ref={videoRef} autoPlay className="rounded-lg shadow-lg"></video>
     </div>
   );
