@@ -7,6 +7,8 @@ const App = () => {
   const [description, setDescription] = useState('');
   const [isWebcamActive, setIsWebcamActive] = useState(false);
 
+  const ngrokUrl = import.meta.env.VITE_NGROK_URL;
+
   // Function to send captured image to API
   const sendImageToAPI = async (imageData) => {
     try {
@@ -17,7 +19,7 @@ const App = () => {
       };
 
       // Send POST request to your API
-      const response = await axios.post('https://d3ee-35-185-190-94.ngrok-free.app/describe_image', payload);
+      const response = await axios.post(`${ngrokUrl}/describe_image`, payload);
 
       // Update the description with the response
       setDescription(response.data.description);
