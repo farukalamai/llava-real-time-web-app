@@ -1,0 +1,6 @@
+transformers
+torch>=1.7.0
+Flask==3.0.3
+opencv-python
+pillow
+accelerate
