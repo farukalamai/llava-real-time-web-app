@@ -5,25 +5,24 @@ const Description = ({ description }) => {
   const typingSpeed = 50; // Speed of typing (milliseconds)
 
   useEffect(() => {
-    if (description) {
-      setDisplayedText(''); // Clear the displayed text before typing the new description
-      let currentIndex = -1;
+    if (!description) return;
 
-      const typingInterval = setInterval(() => {
-        // Check if currentIndex is within bounds
-        if (currentIndex < description.length - 1) {
-          setDisplayedText((prev) => prev + description[currentIndex]);
-          currentIndex++;
-        } else {
-          clearInterval(typingInterval); // Clear interval once all text is displayed
-        }
-      }, typingSpeed);
+    setDisplayedText(''); // Reset displayed text
+    let currentIndex = -1;
 
-      // Cleanup interval if description changes or component unmounts
-      return () => clearInterval(typingInterval);
-    } else {
-      setDisplayedText(''); // Reset if no description is provided
-    }
+    const typingInterval = setInterval(() => {
+      setDisplayedText((prev) => (prev !== 'undefined' ? prev : '') + description[currentIndex-1])
+      
+      currentIndex++;
+
+      // Clear interval when done
+      if (currentIndex === description.length) {
+        clearInterval(typingInterval);
+      }
+    }, typingSpeed);
+
+    // Cleanup on unmount or description change
+    return () => clearInterval(typingInterval);
   }, [description, typingSpeed]);
 
   return (

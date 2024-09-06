@@ -4,3 +4,8 @@ Flask==3.0.3
 opencv-python
 pillow
 accelerate
+Flask-Cors
+google-cloud-speech
+google-cloud-texttospeech
+python-dotenv
+gunicorn==20.1.0
